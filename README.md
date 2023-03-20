@@ -1,3 +1,1 @@
 # shecodes-git
-
-chto ugodno

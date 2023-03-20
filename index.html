@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://kit.fontawesome.com/bda4ab955a.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <h1>Currently in Kyiv</h1>
+    <div class="weathercard">
+      <div class="container">
+        <div class="row">
+          <div class="col-10">
+            <form class="searchForm">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter a city"
+                class="Search"
+              />
+            </form>
+          </div>
+          <div class="col-2">
+            <button class="btn btn-primary current">Current</button>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col quick-pick">
+            <a href="#">Paris</a> <a href="#">Rome</a> <a href="#">Ottawa</a>
+            <a href="#">Canberra</a> <a href="#">Vienna</a>
+            <a href="#">Washington D.C.</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container current-city-info">
+        <div class="row">
+          <div class="col-3"><h2 class="chosencity">Kyiv</h2></div>
+          <div class="col-3">
+            <h2 class="temperature">
+              <span class="currenttemp">-3</span>°<span class="celsius active"
+                >C</span
+              >/<span class="fahrenheit">F</span>
+            </h2>
+          </div>
+          <div class="col-3 addition">
+            Precipitation: 5% <br />Humidity: 89% <br />Humidity: 89%<br />Wind:
+            18 km/h
+          </div>
+          <div class="col-3">
+            <i class="fa-regular fa-snowflake snowflake"></i>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col current-time">
+            Time: <span class="settime"></span>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row forecast">
+          <div class="col">
+            Monday <br /><button class="btn btn-primary">-3°C/-6°C</button>
+          </div>
+          <div class="col">
+            Tuesday <br /><button class="btn btn-primary">+3°C/-3°C</button>
+          </div>
+          <div class="col">
+            Wednesday<br /><button class="btn btn-primary">+7°C/-3°C</button>
+          </div>
+          <div class="col">
+            Thursday<br /><button class="btn btn-primary">+5°C/-2°C</button>
+          </div>
+          <div class="col">
+            Friday<br /><button class="btn btn-primary">-2°C/-5°C</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
