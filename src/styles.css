@@ -52,3 +52,7 @@ h1 {
 .active {
   color: blue;
 }
+
+.footer {
+  text-align: center;
+}
