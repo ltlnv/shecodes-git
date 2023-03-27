@@ -10,9 +10,7 @@
       rel="stylesheet"
       integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
       crossorigin="anonymous" />
-    <script
-      src="https://kit.fontawesome.com/bda4ab955a.js"
-      crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/bda4ab955a.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
 
     <link rel="stylesheet" href="src/styles.css" />
@@ -21,26 +19,20 @@
     <h1>Currently in Kyiv</h1>
     <div class="weathercard">
       <div class="container">
-        <div class="row">
+        <form class="row searchForm">
           <div class="col-10">
-            <form class="searchForm">
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Enter a city"
-                class="Search" />
-            </form>
+            <input type="text" class="form-control" placeholder="Enter a city" class="Search" />
           </div>
           <div class="col-2">
-            <button class="btn btn-primary current">Current</button>
+            <button class="btn btn-primary current">Find</button>
           </div>
-        </div>
+        </form>
       </div>
       <div class="container">
         <div class="row">
           <div class="col quick-pick">
-            <a href="#">Paris</a> <a href="#">Rome</a> <a href="#">Ottawa</a>
-            <a href="#">Canberra</a> <a href="#">Vienna</a>
+            <a href="#">Paris</a> <a href="#">Rome</a> <a href="#">Ottawa</a> <a href="#">Canberra</a>
+            <a href="#">Vienna</a>
             <a href="#">Washington D.C.</a>
           </div>
         </div>
@@ -51,14 +43,17 @@
           <div class="col-3"><h2 class="chosencity">Kyiv</h2></div>
           <div class="col-3">
             <h2 class="temperature">
-              <span class="currenttemp">-3</span>°<span class="celsius active"
-                >C</span
-              >/<span class="fahrenheit">F</span>
+              <span class="currenttemp">-3</span>°<span class="celsius active">C</span>/<span class="fahrenheit"
+                >F</span
+              >
             </h2>
           </div>
           <div class="col-3 addition">
-            Precipitation: 5% <br />Humidity: 89% <br />Humidity: 89%<br />Wind:
-            18 km/h
+            <span class="current-temp-description"></span>
+            <br />
+            Humidity: <span class="current-temp-humidity"></span>%
+            <br />
+            Wind: <span class="current-temp-wind"></span> km/h
           </div>
           <div class="col-3">
             <i class="fa-regular fa-snowflake snowflake"></i>
@@ -67,35 +62,21 @@
       </div>
       <div class="container">
         <div class="row">
-          <div class="col current-time">
-            Time: <span class="settime"></span>
-          </div>
+          <div class="col current-time">Time: <span class="settime"></span></div>
         </div>
       </div>
       <div class="container">
         <div class="row forecast">
-          <div class="col">
-            Monday <br /><button class="btn btn-primary">-3°C/-6°C</button>
-          </div>
-          <div class="col">
-            Tuesday <br /><button class="btn btn-primary">+3°C/-3°C</button>
-          </div>
-          <div class="col">
-            Wednesday<br /><button class="btn btn-primary">+7°C/-3°C</button>
-          </div>
-          <div class="col">
-            Thursday<br /><button class="btn btn-primary">+5°C/-2°C</button>
-          </div>
-          <div class="col">
-            Friday<br /><button class="btn btn-primary">-2°C/-5°C</button>
-          </div>
+          <div class="col">Monday <br /><button class="btn btn-primary">-3°C/-6°C</button></div>
+          <div class="col">Tuesday <br /><button class="btn btn-primary">+3°C/-3°C</button></div>
+          <div class="col">Wednesday<br /><button class="btn btn-primary">+7°C/-3°C</button></div>
+          <div class="col">Thursday<br /><button class="btn btn-primary">+5°C/-2°C</button></div>
+          <div class="col">Friday<br /><button class="btn btn-primary">-2°C/-5°C</button></div>
         </div>
       </div>
     </div>
     <div class="footer">
-      <a href="https://github.com/ltlnv/shecodes-git" target="_blank"
-        >Open-source code</a
-      >
+      <a href="https://github.com/ltlnv/shecodes-git" target="_blank">Open-source code</a>
     </div>
     <script src="script.js"></script>
   </body>

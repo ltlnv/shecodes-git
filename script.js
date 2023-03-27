@@ -30,10 +30,6 @@ function getWeather(cityName) {
 
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&APPID=${apiKey}&units=metric`;
   axios.get(apiUrl).then(showWeather);
-
-  function showWeather(response) {
-    currentTemp.innerHTML = Math.round(response.data.main.temp);
-  }
 }
 
 currentButton.addEventListener("click", getCurrentLocationWeather);
@@ -51,8 +47,12 @@ function handlePosition(position) {
 }
 
 function showWeather(response) {
-  document.querySelector("h1").innerHTML = `Currently in your location`;
-  document.querySelector("h2.chosencity").innerHTML = `Your city`;
+  console.log(response);
+  document.querySelector("h1").innerHTML = `Currently in ${response.data.name}`;
+  document.querySelector("h2.chosencity").innerHTML = response.data.name;
+  document.querySelector(".current-temp-description").innerHTML = response.data.weather[0].description;
+  document.querySelector(".current-temp-humidity").innerHTML = response.data.main.humidity;
+  document.querySelector(".current-temp-wind").innerHTML = response.data.wind.speed;
   currentTemp.innerHTML = Math.round(response.data.main.temp);
 }
 
