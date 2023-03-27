@@ -53,6 +53,10 @@ function showWeather(response) {
   document.querySelector(".current-temp-description").innerHTML = response.data.weather[0].description;
   document.querySelector(".current-temp-humidity").innerHTML = response.data.main.humidity;
   document.querySelector(".current-temp-wind").innerHTML = response.data.wind.speed;
+  document.querySelector(
+    ".current-temp-icon"
+  ).src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
+
   currentTemp.innerHTML = Math.round(response.data.main.temp);
 }
 
