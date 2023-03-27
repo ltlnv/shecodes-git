@@ -15,6 +15,7 @@ let currentButton = document.querySelector(".current");
 let currentTemp = document.querySelector("h2 .currenttemp");
 let celsiusOption = document.querySelector("h2 .celsius");
 let farenheitOption = document.querySelector("h2 .fahrenheit");
+let quickPick = document.querySelector(".quick-pick");
 
 let searchForm = document.querySelector(".searchForm");
 searchForm.addEventListener("submit", changeInput);
@@ -22,6 +23,14 @@ function changeInput(e) {
   e.preventDefault();
   let searchInput = document.querySelector("input.form-control").value;
   getWeather(searchInput);
+}
+
+quickPick.addEventListener("click", getPickedCityWeather);
+
+function getPickedCityWeather(e) {
+  if (e.target.classList.contains("quick-pick-city")) {
+    getWeather(e.target.textContent);
+  }
 }
 
 function getWeather(cityName) {
