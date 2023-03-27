@@ -1,14 +1,14 @@
 let apiKey = "add8540647afe4dac44dce1763d4a4cd";
 
-let currentTime = document.querySelector("span.settime");
+// let currentTime = document.querySelector("span.settime");
 
-let now = new Date();
-let hours = now.getHours();
-let minutes = now.getMinutes();
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-currentTime.innerHTML = `${hours}:${minutes}`;
+// let now = new Date();
+// let hours = now.getHours();
+// let minutes = now.getMinutes();
+// if (minutes < 10) {
+//   minutes = `0${minutes}`;
+// }
+// currentTime.innerHTML = `${hours}:${minutes}`;
 
 let currentButton = document.querySelector(".current");
 
@@ -56,7 +56,6 @@ function handlePosition(position) {
 }
 
 function showWeather(response) {
-  console.log(response);
   document.querySelector("h1").innerHTML = `Currently in ${response.data.name}`;
   document.querySelector("h2.chosencity").innerHTML = response.data.name;
   document.querySelector(".current-temp-description").innerHTML = response.data.weather[0].description;
@@ -69,16 +68,30 @@ function showWeather(response) {
   currentTemp.innerHTML = Math.round(response.data.main.temp);
 }
 
-// farenheitOption.addEventListener("click", switchtoFarenheit);
-// function switchtoFarenheit() {
-//   currentTemp.innerHTML = "-20";
-//   farenheitOption.classList.add("active");
-//   celsiusOption.classList.remove("active");
-// }
+farenheitOption.addEventListener("click", switchtoFarenheit);
+function switchtoFarenheit(e) {
+  if (!e.target.classList.contains("active")) {
+    const currentTempInCel = currentTemp.innerHTML;
+    currentTemp.innerHTML = cToF(currentTempInCel);
+    farenheitOption.classList.add("active");
+    celsiusOption.classList.remove("active");
+  }
+}
 
-// celsiusOption.addEventListener("click", switchtoCelsius);
-// function switchtoCelsius() {
-//   currentTemp.innerHTML = "-3";
-//   celsiusOption.classList.add("active");
-//   farenheitOption.classList.remove("active");
-// }
+celsiusOption.addEventListener("click", switchtoCelsius);
+function switchtoCelsius(e) {
+  if (!e.target.classList.contains("active")) {
+    const currentTempInF = currentTemp.innerHTML;
+    currentTemp.innerHTML = fToC(currentTempInF);
+    celsiusOption.classList.add("active");
+    farenheitOption.classList.remove("active");
+  }
+}
+
+function cToF(celsius) {
+  return Math.round((celsius * 9) / 5 + 32);
+}
+
+function fToC(fahrenheit) {
+  return Math.round(((fahrenheit - 32) * 5) / 9);
+}
