@@ -58,6 +58,10 @@ function showWeather(response) {
   ).src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
 
   currentTemp.innerHTML = Math.round(response.data.main.temp);
+
+  celsiusOption.classList.add("active");
+  farenheitOption.classList.remove("active");
+
   getForecast(response.data.coord);
 }
 
