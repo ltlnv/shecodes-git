@@ -24,8 +24,6 @@ function getPickedCityWeather(e) {
   }
 }
 
-getWeather("Kyiv");
-
 function getWeather(cityName) {
   document.querySelector("h1").innerHTML = `Currently in ${cityName}`;
   document.querySelector("h2.chosencity").innerHTML = `${cityName}`;
@@ -38,7 +36,8 @@ currentButton.addEventListener("click", getCurrentLocationWeather);
 function getCurrentLocationWeather() {
   navigator.geolocation.getCurrentPosition(handlePosition);
 }
-// getCurrentLocationWeather();
+
+getCurrentLocationWeather();
 
 function handlePosition(position) {
   let lat = position.coords.latitude;
