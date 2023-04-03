@@ -1,15 +1,5 @@
 let apiKey = "add8540647afe4dac44dce1763d4a4cd";
 
-// let currentTime = document.querySelector("span.settime");
-
-// let now = new Date();
-// let hours = now.getHours();
-// let minutes = now.getMinutes();
-// if (minutes < 10) {
-//   minutes = `0${minutes}`;
-// }
-// currentTime.innerHTML = `${hours}:${minutes}`;
-
 let currentButton = document.querySelector(".current");
 
 let currentTemp = document.querySelector("h2 .currenttemp");
@@ -33,6 +23,8 @@ function getPickedCityWeather(e) {
   }
 }
 
+getWeather("Kyiv");
+
 function getWeather(cityName) {
   document.querySelector("h1").innerHTML = `Currently in ${cityName}`;
   document.querySelector("h2.chosencity").innerHTML = `${cityName}`;
@@ -45,7 +37,7 @@ currentButton.addEventListener("click", getCurrentLocationWeather);
 function getCurrentLocationWeather() {
   navigator.geolocation.getCurrentPosition(handlePosition);
 }
-getCurrentLocationWeather();
+// getCurrentLocationWeather();
 
 function handlePosition(position) {
   let lat = position.coords.latitude;
@@ -56,6 +48,7 @@ function handlePosition(position) {
 }
 
 function showWeather(response) {
+  console.log(response);
   document.querySelector("h1").innerHTML = `Currently in ${response.data.name}`;
   document.querySelector("h2.chosencity").innerHTML = response.data.name;
   document.querySelector(".current-temp-description").innerHTML = response.data.weather[0].description;
@@ -66,6 +59,16 @@ function showWeather(response) {
   ).src = `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`;
 
   currentTemp.innerHTML = Math.round(response.data.main.temp);
+  getForecast(response.data.coord);
+}
+
+function getForecast(coord) {
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&APPID=${apiKey}`;
+  axios.get(apiUrl).then(showForecast);
+}
+
+function showForecast(response) {
+  console.log(response);
 }
 
 farenheitOption.addEventListener("click", switchtoFarenheit);
