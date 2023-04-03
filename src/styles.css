@@ -65,3 +65,7 @@ h2 .celsius,
 h2 .fahrenheit {
   cursor: pointer;
 }
+
+.forecast-day {
+  text-align: center;
+}

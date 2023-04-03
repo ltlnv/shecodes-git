@@ -1,4 +1,5 @@
 let apiKey = "add8540647afe4dac44dce1763d4a4cd";
+let forecastApiKey = "6bfa54f242cbb59343d4e58db578dc61";
 
 let currentButton = document.querySelector(".current");
 
@@ -48,7 +49,6 @@ function handlePosition(position) {
 }
 
 function showWeather(response) {
-  console.log(response);
   document.querySelector("h1").innerHTML = `Currently in ${response.data.name}`;
   document.querySelector("h2.chosencity").innerHTML = response.data.name;
   document.querySelector(".current-temp-description").innerHTML = response.data.weather[0].description;
@@ -63,12 +63,40 @@ function showWeather(response) {
 }
 
 function getForecast(coord) {
-  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&APPID=${apiKey}`;
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coord.lat}&lon=${coord.lon}&APPID=${forecastApiKey}&units=metric`;
   axios.get(apiUrl).then(showForecast);
 }
 
 function showForecast(response) {
-  console.log(response);
+  const forecast = response.data.daily;
+
+  let forecastElement = document.getElementById("forecast");
+
+  let forecastHTML = `<div class="row">`;
+  forecast.forEach(function (day, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `  
+    <div class="col-2 forecast-day">
+      <div>
+        ${formatDay(day.dt)}
+      </div>
+      <img src="http://openweathermap.org/img/wn/${day.weather[0].icon}@2x.png" alt="" width="70px">
+      <div class="forecast-temperature">
+        <strong class="forecast-max">
+          <span class="forecast-temp">${Math.round(day.temp.max)}</span>°
+        </strong>
+        <span class="forecast-min">
+          <span class="forecast-temp">${Math.round(day.temp.min)}</span>°
+        </span>
+      </div>
+    </div>
+  `;
+    }
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
 }
 
 farenheitOption.addEventListener("click", switchtoFarenheit);
@@ -78,6 +106,12 @@ function switchtoFarenheit(e) {
     currentTemp.innerHTML = cToF(currentTempInCel);
     farenheitOption.classList.add("active");
     celsiusOption.classList.remove("active");
+
+    const forecastTemps = document.querySelectorAll(".forecast-temp");
+    forecastTemps.forEach(function (element) {
+      const forecastTempInCel = element.innerHTML;
+      element.innerHTML = cToF(forecastTempInCel);
+    });
   }
 }
 
@@ -88,6 +122,12 @@ function switchtoCelsius(e) {
     currentTemp.innerHTML = fToC(currentTempInF);
     celsiusOption.classList.add("active");
     farenheitOption.classList.remove("active");
+
+    const forecastTemps = document.querySelectorAll(".forecast-temp");
+    forecastTemps.forEach(function (element) {
+      const forecastTempInF = element.innerHTML;
+      element.innerHTML = fToC(forecastTempInF);
+    });
   }
 }
 
@@ -97,4 +137,11 @@ function cToF(celsius) {
 
 function fToC(fahrenheit) {
   return Math.round(((fahrenheit - 32) * 5) / 9);
+}
+
+function formatDay(timestamp) {
+  const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  const date = new Date(timestamp * 1000);
+
+  return days[date.getDay()];
 }
